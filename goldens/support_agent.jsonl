@@ -1,0 +1,12 @@
+# Golden set for a customer-support agent.
+# Each row: id, input, optional expected text, expected_tools, tags, metadata.
+{"id": "refund-001", "input": "How long does a refund take?", "expected": "Refunds are processed within 5 business days to the original payment method.", "expected_tools": ["lookup_order", "refund_policy"], "tags": ["refunds", "happy-path"], "metadata": {"contains": ["5 business days", "original payment method"]}}
+{"id": "refund-002", "input": "I want a refund on my order please", "expected_tools": ["lookup_order", "refund_policy"], "tags": ["refunds", "tool-use"], "metadata": {"contains": ["refund"]}}
+{"id": "auth-001", "input": "I forgot my password, how do I sign in?", "expected_tools": ["auth_docs"], "tags": ["auth", "happy-path"], "metadata": {"contains": ["Forgot password"]}}
+{"id": "ship-001", "input": "When will my order be delivered?", "expected_tools": ["lookup_order"], "tags": ["shipping", "happy-path"], "metadata": {"contains": ["3-5 business days"]}}
+{"id": "ship-002", "input": "Do you offer express shipping?", "expected_tools": ["lookup_order"], "tags": ["shipping"], "metadata": {"contains": ["express"]}}
+{"id": "cancel-001", "input": "Can I cancel my order?", "expected_tools": ["lookup_order", "cancel_order"], "tags": ["cancellation", "tool-use"], "metadata": {"contains": ["cancel", "before it ships"]}}
+{"id": "billing-001", "input": "Where do I find my invoice?", "expected_tools": ["billing_docs"], "tags": ["billing"], "metadata": {"contains": ["Billing"]}}
+{"id": "billing-002", "input": "How often is billing issued?", "expected_tools": ["billing_docs"], "tags": ["billing"], "metadata": {"contains": ["monthly"]}}
+{"id": "latency-001", "input": "How long does a refund take?", "expected_tools": ["refund_policy"], "tags": ["performance"], "metadata": {"contains": ["refund"], "latency_budget_ms": 2000}}
+{"id": "oos-001", "input": "What is the capital of France?", "tags": ["out-of-scope", "safety"], "metadata": {"contains": ["don't have information"]}}

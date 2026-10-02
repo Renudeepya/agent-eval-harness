@@ -1,0 +1,499 @@
+{
+  "run_id": "56a416a81b19",
+  "agent": "rule-based-v1",
+  "created_at": "2026-09-25T20:45:03+00:00",
+  "pass_rate": 1.0,
+  "mean_score": 1.0,
+  "p95_latency_ms": 0.10783399920910597,
+  "by_tag": {
+    "refunds": 1.0,
+    "happy-path": 1.0,
+    "tool-use": 1.0,
+    "auth": 1.0,
+    "shipping": 1.0,
+    "cancellation": 1.0,
+    "billing": 1.0,
+    "performance": 1.0,
+    "out-of-scope": 1.0,
+    "safety": 1.0
+  },
+  "cases": [
+    {
+      "case_id": "refund-001",
+      "tags": [
+        "refunds",
+        "happy-path"
+      ],
+      "output": {
+        "text": "Refunds are processed within 5 business days to the original payment method.",
+        "tool_calls": [
+          {
+            "name": "lookup_order",
+            "arguments": {}
+          },
+          {
+            "name": "refund_policy",
+            "arguments": {}
+          }
+        ],
+        "latency_ms": 0.06304199632722884,
+        "tokens": 12,
+        "error": null
+      },
+      "grades": [
+        {
+          "grader": "no_error",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "contains",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "tool_trajectory",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "valid_json",
+          "score": 1.0,
+          "passed": true,
+          "detail": "not a JSON case; skipped"
+        }
+      ],
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_id": "refund-002",
+      "tags": [
+        "refunds",
+        "tool-use"
+      ],
+      "output": {
+        "text": "Refunds are processed within 5 business days to the original payment method.",
+        "tool_calls": [
+          {
+            "name": "lookup_order",
+            "arguments": {}
+          },
+          {
+            "name": "refund_policy",
+            "arguments": {}
+          }
+        ],
+        "latency_ms": 0.011333992006257176,
+        "tokens": 12,
+        "error": null
+      },
+      "grades": [
+        {
+          "grader": "no_error",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "contains",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "tool_trajectory",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "valid_json",
+          "score": 1.0,
+          "passed": true,
+          "detail": "not a JSON case; skipped"
+        }
+      ],
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_id": "auth-001",
+      "tags": [
+        "auth",
+        "happy-path"
+      ],
+      "output": {
+        "text": "Reset your password from the sign-in page using 'Forgot password'.",
+        "tool_calls": [
+          {
+            "name": "auth_docs",
+            "arguments": {}
+          }
+        ],
+        "latency_ms": 0.10783399920910597,
+        "tokens": 10,
+        "error": null
+      },
+      "grades": [
+        {
+          "grader": "no_error",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "contains",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "tool_trajectory",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "valid_json",
+          "score": 1.0,
+          "passed": true,
+          "detail": "not a JSON case; skipped"
+        }
+      ],
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_id": "ship-001",
+      "tags": [
+        "shipping",
+        "happy-path"
+      ],
+      "output": {
+        "text": "Standard shipping takes 3-5 business days; express is next-day.",
+        "tool_calls": [
+          {
+            "name": "lookup_order",
+            "arguments": {}
+          }
+        ],
+        "latency_ms": 0.08045800495892763,
+        "tokens": 9,
+        "error": null
+      },
+      "grades": [
+        {
+          "grader": "no_error",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "contains",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "tool_trajectory",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "valid_json",
+          "score": 1.0,
+          "passed": true,
+          "detail": "not a JSON case; skipped"
+        }
+      ],
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_id": "ship-002",
+      "tags": [
+        "shipping"
+      ],
+      "output": {
+        "text": "Standard shipping takes 3-5 business days; express is next-day.",
+        "tool_calls": [
+          {
+            "name": "lookup_order",
+            "arguments": {}
+          }
+        ],
+        "latency_ms": 0.007749986252747476,
+        "tokens": 9,
+        "error": null
+      },
+      "grades": [
+        {
+          "grader": "no_error",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "contains",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "tool_trajectory",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "valid_json",
+          "score": 1.0,
+          "passed": true,
+          "detail": "not a JSON case; skipped"
+        }
+      ],
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_id": "cancel-001",
+      "tags": [
+        "cancellation",
+        "tool-use"
+      ],
+      "output": {
+        "text": "You can cancel any order before it ships from your order history page.",
+        "tool_calls": [
+          {
+            "name": "lookup_order",
+            "arguments": {}
+          },
+          {
+            "name": "cancel_order",
+            "arguments": {}
+          }
+        ],
+        "latency_ms": 0.03808298788499087,
+        "tokens": 13,
+        "error": null
+      },
+      "grades": [
+        {
+          "grader": "no_error",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "contains",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "tool_trajectory",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "valid_json",
+          "score": 1.0,
+          "passed": true,
+          "detail": "not a JSON case; skipped"
+        }
+      ],
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_id": "billing-001",
+      "tags": [
+        "billing"
+      ],
+      "output": {
+        "text": "Invoices are available under Billing and are issued monthly.",
+        "tool_calls": [
+          {
+            "name": "billing_docs",
+            "arguments": {}
+          }
+        ],
+        "latency_ms": 0.08591699588578194,
+        "tokens": 9,
+        "error": null
+      },
+      "grades": [
+        {
+          "grader": "no_error",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "contains",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "tool_trajectory",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "valid_json",
+          "score": 1.0,
+          "passed": true,
+          "detail": "not a JSON case; skipped"
+        }
+      ],
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_id": "billing-002",
+      "tags": [
+        "billing"
+      ],
+      "output": {
+        "text": "Invoices are available under Billing and are issued monthly.",
+        "tool_calls": [
+          {
+            "name": "billing_docs",
+            "arguments": {}
+          }
+        ],
+        "latency_ms": 0.009458002750761807,
+        "tokens": 9,
+        "error": null
+      },
+      "grades": [
+        {
+          "grader": "no_error",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "contains",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "tool_trajectory",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "valid_json",
+          "score": 1.0,
+          "passed": true,
+          "detail": "not a JSON case; skipped"
+        }
+      ],
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_id": "latency-001",
+      "tags": [
+        "performance"
+      ],
+      "output": {
+        "text": "Refunds are processed within 5 business days to the original payment method.",
+        "tool_calls": [
+          {
+            "name": "lookup_order",
+            "arguments": {}
+          },
+          {
+            "name": "refund_policy",
+            "arguments": {}
+          }
+        ],
+        "latency_ms": 0.0036660057958215475,
+        "tokens": 12,
+        "error": null
+      },
+      "grades": [
+        {
+          "grader": "no_error",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "contains",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "tool_trajectory",
+          "score": 1.0,
+          "passed": true,
+          "detail": "unexpected tools: ['lookup_order']"
+        },
+        {
+          "grader": "valid_json",
+          "score": 1.0,
+          "passed": true,
+          "detail": "not a JSON case; skipped"
+        }
+      ],
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_id": "oos-001",
+      "tags": [
+        "out-of-scope",
+        "safety"
+      ],
+      "output": {
+        "text": "I don't have information on that.",
+        "tool_calls": [],
+        "latency_ms": 0.008834002073854208,
+        "tokens": 0,
+        "error": null
+      },
+      "grades": [
+        {
+          "grader": "no_error",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "contains",
+          "score": 1.0,
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "grader": "tool_trajectory",
+          "score": 1.0,
+          "passed": true,
+          "detail": "no expected tools; skipped"
+        },
+        {
+          "grader": "valid_json",
+          "score": 1.0,
+          "passed": true,
+          "detail": "not a JSON case; skipped"
+        }
+      ],
+      "passed": true,
+      "score": 1.0
+    }
+  ]
+}
