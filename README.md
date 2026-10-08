@@ -73,6 +73,66 @@ have shipped it.
 
 ---
 
+## Use it from an MCP client
+
+`mcp_server.py` exposes the harness over the [Model Context
+Protocol](https://modelcontextprotocol.io) on stdio, so a model can drive the
+regression workflow itself instead of you shelling out to the CLI — "baseline
+the current agent, then tell me what my prompt change broke."
+
+Four tools, with typed schemas and descriptions written to be read by a model:
+
+| Tool | Purpose |
+|---|---|
+| `list_golden_sets` | What can be evaluated against |
+| `run_eval` | Evaluate an agent; optionally record the run as the baseline |
+| `gate` | Evaluate and diff against the baseline — the CI check, as a tool |
+| `list_runs` | Stored runs and which one is the baseline |
+
+Register it with any MCP client. For Claude Desktop, in
+`claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "agenteval": {
+      "command": "/abs/path/to/.venv/bin/python",
+      "args": ["/abs/path/to/agent-eval-harness/mcp_server.py"]
+    }
+  }
+}
+```
+
+The client launches the server as a subprocess and speaks JSON-RPC over
+stdin/stdout, so `command` must be the interpreter that has `agenteval`
+installed — a system `python` will fail to import it. Nothing may be written to
+stdout except protocol messages.
+
+Gating the deliberately broken agent through the `gate` tool returns the same
+verdict the CLI does, structured for a model to act on:
+
+```json
+{
+  "baseline_pass_rate": 1.0,
+  "current_pass_rate": 0.1,
+  "pass_rate_delta": -0.9,
+  "ok": false,
+  "regressions": [
+    {"case_id": "refund-001", "baseline_score": 1.0, "current_score": 0.75}
+  ],
+  "current_failures": [
+    {"case_id": "refund-001",
+     "reasons": ["missing tools: ['lookup_order', 'refund_policy']"]}
+  ]
+}
+```
+
+Note the regressed cases score **0.75, not 0** — every text grader still passed.
+Only `ToolTrajectory` failed. That is the whole argument for trajectory grading,
+visible in the numbers.
+
+---
+
 ## The golden set
 
 JSONL, one case per line, version-controlled next to your code. `#` comments and
@@ -180,6 +240,7 @@ src/agenteval/
   store.py        JSON run persistence and baselines
   adapters.py     rule-based, callable, OpenAI, Anthropic
   cli.py          run / compare / gate
+mcp_server.py     MCP server exposing the harness as tools (stdio)
 goldens/          versioned test cases
 examples/         a deliberately regressed agent for the demo
 tests/            59 tests, no network required
